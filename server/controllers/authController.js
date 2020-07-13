@@ -21,7 +21,7 @@ module.exports = {
         req.session.user = {
             username: user.username,
             id: user.id,
-            profilePicture: user.profilepicture
+            profilePicture: user.profilePicture
         }
     
         res.status(200).send(req.session.user)
@@ -49,7 +49,7 @@ module.exports = {
         req.session.user = {
             username: user.username,
             id: user.id,
-            profilePicture: user.profilepicture
+            profilePicture: user.profilePicture
         }
     
         res.status(200).send(req.session.user)

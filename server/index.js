@@ -1,12 +1,12 @@
 require('dotenv').config()
+require('dotenv').config()
 const massive = require('massive'),
-express = require('express'),
-mainCtrl = require('./controllers/controller'),
-authCtrl = require('./controllers/authController'),
-postCtrl = require('./controllers/postController'),
-session = require('express-session'),
-app = express(),
-{CONNECTION_STRING, SERVER_PORT, SESSION_SECRET} = process.env
+    express = require('express'),
+    app = express(),
+    authCtrl = require('./controllers/authController'),
+    postCtrl = require('./controllers/postController'),
+    session = require('express-session'),
+    { CONNECTION_STRING, SESSION_SECRET, SERVER_PORT } = process.env
 
 
 app.use(express.json())
@@ -32,5 +32,11 @@ massive({
 
 app.post('/Auth/register', authCtrl.register)
 app.post('/Auth/login', authCtrl.login)
+app.post('api/auth/logout', authCtrl.logout)
+app.post('/new/:userId', postCtrl.createPost)
+app.get('/posts/:userId', postCtrl.getPosts)
+app.get('/posts', postCtrl.getAllPosts)
+app.get('/post/:post_id', postCtrl.selectPost)
+app.delete('/post/delete/:post_id', postCtrl.deletePost)
 
 app.listen(SERVER_PORT, () => {console.log(`Natalie's server tuned in on port ${SERVER_PORT}`)})

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import { setUser } from '../../ducks/actions';
+// import { setUser } from '../../ducks/actions';
 
 
 class Auth extends Component {
@@ -50,7 +50,7 @@ class Auth extends Component {
             .post('/Auth/login', body)
             .then((res) => {
                 this.props.setUser(res.data.id, res.data.username, res.data.profilePicture)
-                this.props.history.push('/dashboard')
+                this.props.history.push('/Dashboard')
             }).catch((err) => {
                 alert(err.response.data)
             })
@@ -74,4 +74,4 @@ class Auth extends Component {
     }
 }
 
-export default connect(null, { setUser })(Auth)
+export default connect(null)(Auth)
